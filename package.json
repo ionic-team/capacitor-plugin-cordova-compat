@@ -1,0 +1,28 @@
+{
+  "name": "@capacitor/plugin-cordova-compat",
+  "version": "1.0.0",
+  "description": "Use Capacitor Plugins in a Cordova app.",
+  "cordova": {
+    "id": "capacitor-plugin-cordova-compat",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "scripts": {
+    "release": "npx np --no-tests"
+  },
+  "author": "Ionic Team",
+  "license": "MIT",
+  "engines": {
+    "cordovaDependencies": {
+      "3.0.0": {
+        "cordova-android": ">=10.0.0",
+        "cordova": ">=10.0.0"
+      }
+    }
+  },
+  "devDependencies": {
+    "np": "^7.6.2"
+  }
+}

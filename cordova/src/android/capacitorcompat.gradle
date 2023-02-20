@@ -1,0 +1,21 @@
+buildscript {
+    
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {}
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+dependencies {   
+}
+
+ext.postBuildExtras = {
+}

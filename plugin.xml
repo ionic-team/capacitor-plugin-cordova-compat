@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="capacitor-plugin-cordova-compat" version="0.3.1">
+    <name>capacitor-plugin-cordova-compat</name>
+    <description>Capacitor compat plugin</description>
+    <license>SEE LICENSE</license>
+    <keywords>Ionic,capacitor,compat</keywords>
+    <repo>git+https://github.com/ionic-team/capacitor.git</repo>
+    <issue>https://ionic.zendesk.com/hc/en-us</issue>
+
+    <js-module src="cordova/www/capacitorcompat.js" name="capacitorcompat">
+        <runs/>
+        <clobbers target="CapacitorCompat"/>
+    </js-module>
+
+    <hook type="after_prepare" src="scripts/afterPrepare.js" />
+
+    <platform name="android">
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.INTERNET"/>
+        </config-file>
+
+        <framework src="cordova/src/android/capacitorcompat.gradle" custom="true" type="gradleReference" />
+
+        <source-file src="cordova/src/android/com/getcapacitor/Bridge.java" target-dir="src/com/getcapacitor" />
+        <source-file src="cordova/src/android/com/getcapacitor/CapConfig.java" target-dir="src/com/getcapacitor" />
+        <source-file src="cordova/src/android/com/getcapacitor/FileUtils.java" target-dir="src/com/getcapacitor" />
+        <source-file src="cordova/src/android/com/getcapacitor/JSArray.java" target-dir="src/com/getcapacitor" />
+        <source-file src="cordova/src/android/com/getcapacitor/JSObject.java" target-dir="src/com/getcapacitor" />
+        <source-file src="cordova/src/android/com/getcapacitor/Logger.java" target-dir="src/com/getcapacitor" />
+        <source-file src="cordova/src/android/com/getcapacitor/Plugin.java" target-dir="src/com/getcapacitor" />
+        <source-file src="cordova/src/android/com/getcapacitor/PluginConfig.java" target-dir="src/com/getcapacitor" />
+        <source-file src="cordova/src/android/com/getcapacitor/PluginCall.java" target-dir="src/com/getcapacitor" />
+        <source-file src="cordova/src/android/com/getcapacitor/PluginHandle.java" target-dir="src/com/getcapacitor" />
+        <source-file src="cordova/src/android/com/getcapacitor/PluginMethod.java" target-dir="src/com/getcapacitor" />
+        <source-file src="cordova/src/android/com/getcapacitor/PluginMethodHandle.java" target-dir="src/com/getcapacitor" />
+        <source-file src="cordova/src/android/com/getcapacitor/annotation/CapacitorPlugin.java" target-dir="src/com/getcapacitor/annotation" />
+        <source-file src="cordova/src/android/com/getcapacitor/annotation/Permission.java" target-dir="src/com/getcapacitor/annotation" />
+        <source-file src="cordova/src/android/com/getcapacitor/util/PermissionHelper.java" target-dir="src/com/getcapacitor/util" />
+        <source-file src="cordova/src/android/com/getcapacitor/util/JSONUtils.java" target-dir="src/com/getcapacitor/util" />
+    </platform>
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="CapacitorCompat">
+                <param name="ios-package" value="CapacitorCompat" onload="true"/>
+            </feature>
+            <preference name="deployment-target" value="13.0.0" />
+            <preference name="UseSwiftLanguageVersion" value="5"/>
+        </config-file>
+
+        
+        <source-file src="cordova/src/ios/CAPPlugin.swift"/>
+        <source-file src="cordova/src/ios/CAPPluginCall.swift"/>
+        <source-file src="cordova/src/ios/CAPPluginConfig.swift"/>
+        <source-file src="cordova/src/ios/CDVConverter.swift"/>
+        <source-file src="cordova/src/ios/JSTypes.swift"/>
+        <source-file src="cordova/src/ios/KeyPath.swift"/>
+        <dependency id="cordova-plugin-add-swift-support" version="2.0.2"/>
+    </platform>
+    <author email="hi@ionic.io" href="https://ionicframework.com">Ionic Team</author>
+</plugin>
