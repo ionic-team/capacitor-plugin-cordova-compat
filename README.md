@@ -176,15 +176,19 @@ import type { {{PLUGIN_EXPORT_NAME}}Plugin } from './definitions';
 
 let {{PLUGIN_EXPORT_NAME}}Impl;
 
-if ((window as any).cordova !== undefined && (window as any).cordova.platformVersion !== '1.0.0') {
+if (
+  (window as any).cordova !== undefined &&
+  (window as any).cordova.platformVersion !== undefined &&
+  (window as any).cordova.platformVersion !== '1.0.0'
+) {
   {{PLUGIN_EXPORT_NAME}}Impl = new Proxy({}, {
     get(_target, property) {
       return (window as any).{{PLUGIN_EXPORT_NAME}}[property];
     }
   });
 } else {
-  {{PLUGIN_EXPORT_NAME}}Impl = registerPlugin<TesterPlugin>('Tester', {
-    web: () => import('./web').then(m => new m.TesterWeb()),
+  {{PLUGIN_EXPORT_NAME}}Impl = registerPlugin<{{PLUGIN_EXPORT_NAME}}Plugin>('{{PLUGIN_EXPORT_NAME}}', {
+    web: () => import('./web').then(m => new m.{{PLUGIN_EXPORT_NAME}}Web()),
   });
 }
 
